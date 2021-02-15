@@ -1,0 +1,26 @@
+package com.kata.bank;
+
+
+import java.time.LocalDate;
+
+public class Account {
+    private OperationHistory history;
+
+    public Account(OperationHistory history) {
+        this.history = history;
+    }
+
+    public void deposit(Money amount, LocalDate date) {
+        history.add(Operation.Type.DEPOSIT, amount, date);
+    }
+
+    public void withdraw(Money amount, LocalDate date) {
+        history.add(Operation.Type.WITHDRAWAL, amount, date);
+    }
+
+    public void printStatement(StatementPrinter printer) {
+        printer.printStatement(history.getStatement());
+    }
+
+}
+
